@@ -1,0 +1,117 @@
+def showInfo():
+    print("----------提示信息----------")
+    print("输入数字0：正常退出!")
+    print("输入数字1：添加学生信息!")
+    print("输入数字2：展示学生信息!")
+    print("输入数字3：修改学生信息!")
+    print("输入数字4：删除学生信息!")
+    print("输入其他任何数字、字符、英文：异常退出!")
+    print("----------------------------")
+    number = eval(input("请输入0,1，2，3，4其中一个数字:"))
+    return number
+
+def addStudent():
+    name=input("请输入学生的姓名：")
+    id=input("请输入学生的学号：")
+    sex=input("请输入学生的性别：")
+    age=eval(input("请输入学生的年龄："))
+    major=input("请输入学生的专业：")
+    score=eval(input("请输入学生的成绩："))
+    student.append({"姓名":name,"学号":id,"性别":sex,"年龄":age,"专业":major,"成绩":score})
+    print("添加成功!")
+
+def showStudent():
+    if len(student)==0:
+        print("当前无学生信息!")
+    else:
+        print("---------------当前学生信息---------------")
+        print("姓名\t学号\t性别\t年龄\t专业\t成绩")
+        for i in range(len(student)):
+            print("%s\t%s\t\t%s\t\t%s\t\t%s\t%s"%(student[i].get("姓名"),student[i].get("学号"),student[i].get("性别"),student[i].get("年龄"),student[i].get("专业"),student[i].get("成绩")))
+        print("------------------------------------------")
+
+def alterStudent():
+    alternum=eval(input("请输入你需要修改的第几条数据记录："))
+    if alternum<=0 and alternum>len(student):
+        print("该数据记录不存在!")
+    else:
+        key=input("请输入你需要修改的键名(姓名,学号,性别,年龄,专业,成绩)：")
+        if key=='姓名':
+            value=input("请输入你需要修改的值：")
+            student[alternum-1]["姓名"]=value
+            print("成功修改'姓名'该键值!")
+        elif key=='学号':
+            value = input("请输入你需要修改的值：")
+            student[alternum - 1]["学号"] = value
+            print("成功修改'学号'该键值!")
+        elif key=='性别':
+            value = input("请输入你需要修改的值：")
+            student[alternum - 1]["性别"] = value
+            print("成功修改'性别'该键值!")
+        elif key=='年龄':
+            value = input("请输入你需要修改的值：")
+            student[alternum - 1]["年龄"] = value
+            print("成功修改'年龄'该键值!")
+        elif key=='专业':
+            value = input("请输入你需要修改的值：")
+            student[alternum - 1]["专业"] = value
+            print("成功修改'专业'该键值!")
+        elif key=='成绩':
+            value = input("请输入你需要修改的值：")
+            student[alternum - 1]["成绩"] = value
+            print("成功修改'成绩'该键值!")
+        else:
+            print("数据记录中无此键!")
+
+def deleteStudent():
+    deletenum=eval(input("请输入你需要删除的第几条数据记录"))
+    if deletenum<=0 and deletenum>len(student):
+        print("该数据记录不存在!")
+    else:
+        response=input("你是要删除整条数据记录还是删除该数据记录中的某些键（删除整条数据记录、删除该数据记录中的某些键）：")
+        if response=='删除整条数据记录':
+            del student[deletenum - 1]
+            print("成功删除整条数据记录!")
+        elif response=='删除该数据记录中的某些键':
+            key = input("请输入你需要删除的键名(姓名,学号,性别,年龄,专业,成绩)：")
+            if key == '姓名':
+                del student[deletenum - 1]["姓名"]
+                print("成功删除'姓名'该键")
+            elif key=='学号':
+                del student[deletenum - 1]["学号"]
+                print("成功删除'学号'该键")
+            elif key=='性别':
+                del student[deletenum - 1]["性别"]
+                print("成功删除'性别'该键")
+            elif key=='年龄':
+                del student[deletenum - 1]["年龄"]
+                print("成功删除'年龄'该键")
+            elif key=='专业':
+                del student[deletenum - 1]["专业"]
+                print("成功删除'专业'该键")
+            elif key=='成绩':
+                del student[deletenum - 1]["成绩"]
+                print("成功删除'成绩'该键")
+            else:
+                print("数据记录中无此键!")
+
+def main():
+    true=1
+    while true:
+        number=showInfo()
+        if number==0:
+            print("正常退出!")
+            break
+        elif number==1:
+            addStudent()
+        elif number==2:
+            showStudent()
+        elif number==3:
+            alterStudent()
+        elif number==4:
+            deleteStudent()
+        else:
+            print("你输入了不正确的数字，请输入规范的数字!")
+            break
+student=list()
+main()
